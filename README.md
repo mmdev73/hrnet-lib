@@ -11,6 +11,7 @@ This library contains four components:
 * A custom modale: `Modale`
 * A custom date picker: `DatePicker`
 * A custom data table: `DataTable`
+* A custom input text: `InputText`
 
 Each component's style can be modified by overriding the CSS classes.
 
@@ -195,6 +196,31 @@ const dataBody: object[] = [
 />
 ```
 
+### InputText
+
+The InputText component has seven props:
+
+* `string` id : This is the id attribute, it should be replace by a unique value.
+* `string` value : The value of the input, it is required. By default is set to an empty string.
+* `function` onChange : the callback function, it is required.
+* `(string)` labelPosition : the label position. Three possibility : left, center, right. By default is set on left.
+* `(string)` label : The text to be displayed in the label tag, it is required.
+* `(string)` type : The type of the input. By default is set to 'text'.
+* `(RegExp)` regex : The regular expression to check the input value against. By default is set to null.
+
+Exemple:
+```JS
+// For InputText component use
+const [inputText, setInputText] = React.useState<string>('');
+
+<InputText
+  id='test-input-text'
+  label='Input Text'
+  value={inputText}
+  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)}
+/>
+```
+
 ## Versions:
 
 ### 1.0.0:
@@ -209,4 +235,7 @@ const dataBody: object[] = [
 
 ### 1.0.3:
 * Add a `DataTable` component.
+
+### 1.0.4:
+* Add a `InputText` component.
 

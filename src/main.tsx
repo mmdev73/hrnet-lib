@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Select, Modale, DatePicker, DataTable } from './index.js';
+import { Select, Modale, DatePicker, DataTable, InputText } from './index.js';
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 const App: React.FC = () => {
@@ -78,6 +78,9 @@ const App: React.FC = () => {
     }
   ]
 
+  // For InputText component use
+  const [inputText, setInputText] = React.useState<string>('');
+
   return (<>
     <div className="components-container">
       <Select
@@ -119,6 +122,14 @@ const App: React.FC = () => {
         headColumnList={thList}
         dataPropertiesList={dataProperties}
         bodyDataList={dataBody}       
+      />
+    </div>
+    <div className="components-container">
+      <InputText
+        id='test-input-text'
+        label='Input Text'
+        value={inputText}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)}
       />
     </div>
   </>);
