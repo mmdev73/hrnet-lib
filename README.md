@@ -26,16 +26,17 @@ import {Select} from 'hrnet-lib'
 ```
 
 ## Component description
+
 ### Select
 
 The Select component has four props:
 
-* `(string) `id: This is the id attribute, it is required.
-* `(string) `label: The text to be displayed in the label tag, it is required.
-* `(array) `options: An array of the desired options for the select tag, it is required.
-* `(function) `onChange: the callback function, it is required.
-* `(string || null) `defaultValue: null by default.
-* `(string) labelPosition `: the label position. Three possibility : left, center, right. By default is set on left.
+* `(string)` id : This is the id attribute, it is required.
+* `(string)` label : The text to be displayed in the label tag, it is required.
+* `(array)` options : An array of the desired options for the select tag, it is required.
+* `(function)` onChange : the callback function, it is required.
+* `(string || null)` defaultValue : null by default.
+* `(string)` labelPosition : the label position. Three possibility : left, center, right. By default is set on left.
 
 Exemple:
 ```JS
@@ -51,6 +52,38 @@ const optionsSelect:string[] = ['Option 1', 'Option 2', 'Option 3'];
   defaultValue={select}
 />
 ```
+
+### Modale
+
+The Modale component has six props:
+
+* `boolean` isOpen : This is the isOpen prop, it is required.
+* `function` onClose : This is the onClose prop, it is required.
+* `(ReactNode)` children : The content of the dialog. It is required.
+* `(ReactNode)` header : The header content of the dialog. By default is set to null.
+* `(ReactNode)` footer : The footer content of the dialog. By default is set to null.
+* `(string)` id : The ID of the dialog. By default is set to "hrnet-modal". It highly recommended to use a unique ID.
+
+Exemple:
+```JS
+// For Modale component use
+const [isOpen, setIsOpen] = React.useState<boolean>(false);
+const headerTemplate = (
+  <div>
+    <h2>Modal Header</h2>
+  </div>
+)
+
+<Modale
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  header={headerTemplate}
+  id="test-modal"
+>
+  <p>Modale Content</p>
+</Modale>
+```
+
 
 ## Versions:
 
