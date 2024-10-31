@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
-import { Select, Modale, DatePicker } from './index.js';
+import { Select, Modale, DatePicker, DataTable } from './index.js';
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 const App: React.FC = () => {
@@ -16,8 +16,67 @@ const App: React.FC = () => {
     </div>
   )
 
-  // For Date picker component use
+  // For DatePicker component use
   const [dob, setDob] = React.useState<string>('');
+
+  // For DataTable component use
+  const thList: string[] = [
+    "First Name",
+    "Last Name",
+    "Start Date",
+    "Department",
+    "Date of Birth",
+    "Street",
+    "City",
+    "State",
+    "Zip Code"
+  ]
+  const dataProperties: string[] = [
+    "firstname",
+    "lastname",
+    "start",
+    "department",
+    "dob",
+    "street",
+    "city",
+    "state",
+    "zipcode"
+  ]
+  const dataBody: object[] = [
+    {
+      firstname: "John",
+      lastname: "Doe",
+      start: 1656738649,
+      department: "IT",
+      dob: -106185600,
+      street: "123 Main St",
+      city: "Anytown",
+      state: "CA",
+      zipcode: "12345"
+    },
+    {
+      firstname: "Jane",
+      lastname: "Doe",
+      start: 1627662224,
+      department: "IT",
+      dob: 884044800,
+      street: "123 Main St",
+      city: "Anytown",
+      state: "CA",
+      zipcode: "12345"
+    },
+    {
+      firstname: "Jack",
+      lastname: "Doe",
+      start: 1714385180,
+      department: "IT",
+      dob: 382924800,
+      street: "123 Main St",
+      city: "Anytown",
+      state: "CA",
+      zipcode: "12345"
+    }
+  ]
 
   return (<>
     <div className="components-container">
@@ -52,6 +111,14 @@ const App: React.FC = () => {
         localDate='en-US'
         value={dob}
         onChange={(date:string) => setDob(date)}
+      />
+    </div>
+    <div className="components-container">
+      <DataTable
+        id='test-data-table'
+        headColumnList={thList}
+        dataPropertiesList={dataProperties}
+        bodyDataList={dataBody}       
       />
     </div>
   </>);

@@ -10,6 +10,7 @@ This library contains four components:
 * A custom select: `Select`
 * A custom modale: `Modale`
 * A custom date picker: `DatePicker`
+* A custom data table: `DataTable`
 
 Each component's style can be modified by overriding the CSS classes.
 
@@ -112,6 +113,88 @@ const [dob, setDob] = React.useState<string>('');
 />
 ```
 
+### DataTable
+
+The DataTable component has eight props:
+
+* `string` id : This is the id attribute, it is required.
+* `string[]` headColumnList : List of column headers for the table, it is required.
+* `string[]` dataPropertiesList : List of property names to be displayed in each column, it is required.
+* `Record<string, any>[]` bodyDataList : Array of data records to be displayed in the table body, it is required.
+* `[boolean, boolean, number]` options : An array where the first element enables/disables search, the second enables/disables sorting, and the third sets the default number of items per page. Defaults to [true, true, 5].
+* `string[]` isDateData : List of property names that are dates. Defaults to ['dob', 'start'].
+* `(Intl.DateTimeFormatOptions)` dateOptions : Options for formatting date fields. Defaults to { year: 'numeric', month: 'long', day: '2-digit' }.
+* `(string)` localDate : The date to be formatted. By default is set to 'en-US'.
+
+Exemple:
+```JS
+// For Data Table component use
+ const thList: string[] = [
+  "First Name",
+  "Last Name",
+  "Start Date",
+  "Department",
+  "Date of Birth",
+  "Street",
+  "City",
+  "State",
+  "Zip Code"
+]
+const dataProperties: string[] = [
+  "firstname",
+  "lastname",
+  "start",
+  "department",
+  "dob",
+  "street",
+  "city",
+  "state",
+  "zipcode"
+]
+const dataBody: object[] = [
+  {
+    firstname: "John",
+    lastname: "Doe",
+    start: 1656738649,
+    department: "IT",
+    dob: -106185600,
+    street: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+    zipcode: "12345"
+  },
+  {
+    firstname: "Jane",
+    lastname: "Doe",
+    start: 1627662224,
+    department: "IT",
+    dob: 884044800,
+    street: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+    zipcode: "12345"
+  },
+  {
+    firstname: "Jack",
+    lastname: "Doe",
+    start: 1714385180,
+    department: "IT",
+    dob: 382924800,
+    street: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+    zipcode: "12345"
+  }
+]
+
+<DataTable
+  id='test-data-table'
+  headColumnList={thList}
+  dataPropertiesList={dataProperties}
+  bodyDataList={dataBody}       
+/>
+```
+
 ## Versions:
 
 ### 1.0.0:
@@ -124,4 +207,6 @@ const [dob, setDob] = React.useState<string>('');
 ### 1.0.2:
 * Add a `DatePicker` component.
 
+### 1.0.3:
+* Add a `DataTable` component.
 
