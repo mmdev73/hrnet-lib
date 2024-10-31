@@ -8,6 +8,8 @@
 This library contains four components:
 
 * A custom select: `Select`
+* A custom modale: `Modale`
+* A custom date picker: `DatePicker`
 
 Each component's style can be modified by overriding the CSS classes.
 
@@ -84,11 +86,42 @@ const headerTemplate = (
 </Modale>
 ```
 
+### DatePicker
+
+The DatePicker component has seven props:
+
+* `string` label : The text to be displayed in the label tag, it is required.	
+* `string` id : This is the id attribute, it is required.
+* `string` value : The value of the input, it is required.
+* `function` onChange : the callback function, it is required.
+* `(Intl.DateTimeFormatOptions)` dateOptions : The options to be passed to the `Intl.DateTimeFormat` constructor. By default is set to `{ year: 'numeric', month: 'long', day: 'numeric' }`.
+* `(string)` localDate : The date to be formatted. By default is set to 'en-US'.
+* `(string)` labelPosition : the label position. Three possibility : left, center, right. By default is set on left.
+
+Exemple:
+```JS
+// For Date picker component use
+const [dob, setDob] = React.useState<string>('');
+
+<DatePicker
+  id='test-date-picker'
+  label='Date picker'
+  dateOptions={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
+  value={dob}
+  onChange={(date:string) => setDob(date)}
+/>
+```
 
 ## Versions:
 
 ### 1.0.0:
 * Initial release
 * Add a `Select` component.
+
+### 1.0.1:
+* Add a `Modale` component.
+
+### 1.0.2:
+* Add a `DatePicker` component.
 
 

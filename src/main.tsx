@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { Select, Modale } from './index.js';
+import { Select, Modale, DatePicker } from './index.js';
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 const App: React.FC = () => {
@@ -15,6 +15,9 @@ const App: React.FC = () => {
       <h2>Modal Header</h2>
     </div>
   )
+
+  // For Date picker component use
+  const [dob, setDob] = React.useState<string>('');
 
   return (<>
     <div className="components-container">
@@ -40,6 +43,16 @@ const App: React.FC = () => {
       >
         <p>Modale Content</p>
       </Modale>
+    </div>
+    <div className="components-container">
+      <DatePicker
+        id='test-date-picker'
+        label='Date picker'
+        dateOptions={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
+        localDate='en-US'
+        value={dob}
+        onChange={(date:string) => setDob(date)}
+      />
     </div>
   </>);
 };

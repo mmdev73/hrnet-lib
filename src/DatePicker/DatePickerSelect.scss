@@ -1,0 +1,43 @@
+.hrn-dpi-select {
+  position: relative;
+
+  &__selected {
+    height: 100%;
+    cursor: pointer;
+  }
+
+  &__options {
+    width: 10rem;
+    height: 16rem;
+    overflow: hidden;
+    overflow-y: auto;
+    position: absolute;
+    top: 2rem;
+    z-index: 11;
+    background-color: #fcfcfc;
+    border: #333 0.0625rem solid;
+    border-radius: 0.3125rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__option {
+      width: 100%;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &:hover {
+        background-color: #bafff1;
+        color: #393939;
+      }
+      &--selected {
+        background-color: #1ABC9C;
+        color: #fff;
+      }
+    }
+  }
+}
