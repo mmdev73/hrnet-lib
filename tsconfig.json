@@ -1,0 +1,18 @@
+{  
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "declarationDir": "./dist/types",
+    "sourceMap": true,
+  },
+  //"include": ["src"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/index.js"],
+  "exclude": ["node_modules", "dist","src/main.tsx"]
+}
