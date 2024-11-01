@@ -107,6 +107,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
     setOpen(false);
   }, [date, dateOptions, localDate, onChange]);
 
+  const [isInteractingWithSelect, setIsInteractingWithSelect] = useState<boolean>(false);
   useEffect(() => {
     /**
      * Handles a click outside the date picker by closing the date picker.
@@ -116,15 +117,15 @@ const DatePicker: React.FC<DatePickerProps> = ({
      */
     const handleClickOutside = (event: MouseEvent) => {
       if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
+        if (isInteractingWithSelect) return;
         setTimeout(() => setOpen(false), 100);
       }
     };
-
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, [isInteractingWithSelect]);
 
   /**
    * Handles a change event for the input element.
@@ -161,8 +162,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
         {open && (
           <div className="hrn-dpi__group__picker">
             <div className="hrn-dpi__group__picker__header">
-              <DatePickerHeadMonth />
-              <DatePickerHeadYear />
+              <DatePickerHeadMonth onFocusSelect={() => setIsInteractingWithSelect(true)} onBlurSelect={() => setIsInteractingWithSelect(false)}/>
+              <DatePickerHeadYear onFocusSelect={() => setIsInteractingWithSelect(true)} onBlurSelect={() => setIsInteractingWithSelect(false)}/>
               <img
                 src={chevron}
                 alt="previous"

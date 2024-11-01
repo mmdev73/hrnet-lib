@@ -3,6 +3,12 @@ import { DatePickerContext } from './DPContext';
 import DatePickerSelect from './DatePickerSelect';
 import { dateServices } from './dateServices';
 
+interface DatePickerHeadMonthProps {
+  onFocusSelect: () => void;
+  onBlurSelect: () => void;
+}
+
+
 /**
  * DatePickerHeadMonth is a sub-component of DatePicker, this component
  * render a select element that contains the name of all months.
@@ -10,7 +16,10 @@ import { dateServices } from './dateServices';
  * selected month would be passed to DatePickerContext.
  * @returns {React.ReactElement} A select element containing the name of all months.
  */
-const DatePickerHeadMonth: React.FC = () => {
+const DatePickerHeadMonth: React.FC<DatePickerHeadMonthProps> = ({ 
+  onFocusSelect, 
+  onBlurSelect 
+}): React.ReactElement => {
   const { month, setMonth } = useContext(DatePickerContext)!;
   const monthNameStr = dateServices.getMonthName(month);
   const monthNames = dateServices.getMonthArray();
@@ -26,6 +35,8 @@ const DatePickerHeadMonth: React.FC = () => {
 
   return (
     <DatePickerSelect 
+      onFocus={onFocusSelect}
+      onBlur={onBlurSelect}
       options={monthNames} 
       onChange={handleSelectChange} 
       defaultValue={monthNameStr} 

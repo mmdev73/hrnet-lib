@@ -2,6 +2,11 @@ import React, { useContext } from 'react';
 import { DatePickerContext } from './DPContext';
 import DatePickerSelect from './DatePickerSelect';
 
+interface DatePickerHeadYearProps {
+  onFocusSelect: () => void;
+  onBlurSelect: () => void;
+}
+
 /**
  * DatePickerHeadYear is a sub-component of DatePicker, this component
  * render a select element that contains the year from current year to
@@ -10,7 +15,10 @@ import DatePickerSelect from './DatePickerSelect';
  * @returns {React.ReactElement} A select element containing the year from
  * current year to 81 years ago.
  */
-const DatePickerHeadYear: React.FC = () => {
+const DatePickerHeadYear: React.FC<DatePickerHeadYearProps> = ({
+  onFocusSelect,
+  onBlurSelect
+}) => {
   const { year, setYear } = useContext(DatePickerContext)!;
   const currentYear = new Date().getFullYear();
   const yearArr = Array.from({ length: 81 }, (_:number, i:number) => currentYear - i);
@@ -25,7 +33,9 @@ const DatePickerHeadYear: React.FC = () => {
   };
 
   return (
-    <DatePickerSelect 
+    <DatePickerSelect      
+      onFocus={onFocusSelect}
+      onBlur={onBlurSelect}
       options={yearArr.map((year : number) => year.toString())}
       onChange={handleSelectChange} 
       defaultValue={year.toString()} 

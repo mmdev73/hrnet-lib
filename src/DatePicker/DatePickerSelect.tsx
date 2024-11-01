@@ -8,6 +8,8 @@ interface DatePickerSelectProps {
   onChange: (value: string) => void;
   defaultValue?: string;
   type?: 'month' | 'year';
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 /**
@@ -30,7 +32,9 @@ const DatePickerSelect: React.FC<DatePickerSelectProps> = ({
   options, 
   onChange, 
   defaultValue, 
-  type = 'year' 
+  type = 'year',
+  onFocus,
+  onBlur 
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>(defaultValue || options[0]);
@@ -94,7 +98,7 @@ const DatePickerSelect: React.FC<DatePickerSelectProps> = ({
   }, [selectedOption, type]);
 
   return (
-    <div className="hrn-dpi-select" ref={dropdownRef}>
+    <div className="hrn-dpi-select" ref={dropdownRef} onFocus={onFocus} onBlur={onBlur} tabIndex={0}>
       <div className="hrn-dpi-select__selected" onClick={handleDropdownClick}>
         {selectedOption}
       </div>

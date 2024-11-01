@@ -24,6 +24,7 @@ const DatePickerBody: React.FC = () => {
   const { day, month, year, setDate } = useContext(DatePickerContext)!;
   const [dayMonth, setDayMonth] = useState<DayMonth>(() => dateServices.getMonthNbrArr(year, month));
   const [currentMonth, setCurrentMonth] = useState<number>(month);
+  const [currentYear, setCurrentYear] = useState<number>(year);
 
   useEffect(() => {    
     setDayMonth(dateServices.getMonthNbrArr(year, month));
@@ -38,6 +39,7 @@ const DatePickerBody: React.FC = () => {
   const handleSelectDay = (day: number) => {
     const dateSelected = new Date(year, month, day);
     setCurrentMonth(month);
+    setCurrentYear(year);
     setDate(dateSelected);
   };
 
@@ -75,7 +77,7 @@ const DatePickerBody: React.FC = () => {
       {dayMonth.currentMonth && dayMonth.currentMonth.map((dayToDisplay, index) => {
         return (
         <div
-          className={`hrn-dpi__group__picker__body__row__col${((currentMonth === month) && (day === dayToDisplay)) ? ' hrn-dpi__group__picker__body__row__col--active' : ''}`}
+          className={`hrn-dpi__group__picker__body__row__col${((currentYear === year) && (currentMonth === month) && (day === dayToDisplay)) ? ' hrn-dpi__group__picker__body__row__col--active' : ''}`}
           key={index}
           onClick={() => handleSelectDay(dayToDisplay)}
         >

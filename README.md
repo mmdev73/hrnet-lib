@@ -246,3 +246,6 @@ const [inputText, setInputText] = React.useState<string>('');
 
 ### 1.0.6:
 * Update `DatePicker` to fix design issues. 
+
+### 1.0.7:
+* Update `DatePicker` to fix intempestive closing issues. 
