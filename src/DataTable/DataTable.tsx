@@ -65,7 +65,7 @@ const DataTable: React.FC<DataTableProps> = ({
   const sortOpt = options[1];
   const [perPageOpt, setPerPageOpt] = useState<number>(parseInt(options[2].toString()));
 
-  
+
 /**
  * Handles the search input change event by filtering the data to display
  * based on the search text. If the search text is empty, it resets the data
@@ -75,14 +75,24 @@ const DataTable: React.FC<DataTableProps> = ({
  * @param {React.ChangeEvent<HTMLInputElement>} e - The change event from the search input.
  */
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatDate = (timestamp: number) => {
+      const date = new Date(timestamp);
+      return date.toLocaleDateString(localDate, dateOptions);
+    }
     const searchText = e.target.value;
     if (!searchText) {
       setDataToDisplay(bodyDataList);
       return;
     }
     const filteredData = bodyDataList.filter((item) => {
-      const values = Object.values(item);
-      return values.some((value: string) => value.toString().toLowerCase().includes(searchText.toLowerCase()));
+      return Object.keys(item).some((key) => {
+        const value = item[key];
+        if (isDateData.includes(key)) {
+          return formatDate(value).toLowerCase().includes(searchText.toLowerCase());
+        } else {
+          return value.toString().toLowerCase().includes(searchText.toLowerCase());
+        }
+      })
     });
     setDataToDisplay(filteredData);
   };
