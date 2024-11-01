@@ -4,6 +4,7 @@ import DatePickerHeadMonth from './DatePickerHeadMonth';
 import DatePickerHeadYear from './DatePickerHeadYear';
 import { dateServices } from './dateServices';
 import './DatePicker.scss';
+import './DatePickerSelect.scss';
 import chevron from '../assets/horizontal-chevron.png';
 import calendar from '../assets/calendar.png';
 import { DatePickerContext } from './DPContext';

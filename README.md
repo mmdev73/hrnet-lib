@@ -243,3 +243,6 @@ const [inputText, setInputText] = React.useState<string>('');
 ### 1.0.5:
 * Update `DatePicker` and `Select` components to manage the outside click.
 * Add a props `initialDaysOffset` to `DatePicker` component. Which allows to offset the initial date.
+
+### 1.0.6:
+* Update `DatePicker` to fix design issues. 

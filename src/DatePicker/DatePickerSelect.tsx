@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { DatePickerContext } from './DPContext';
 import { dateServices } from './dateServices';
-import './DatePickerSelect.scss';
+//import './DatePickerSelect.scss';
 
 interface DatePickerSelectProps {
   options: string[];
