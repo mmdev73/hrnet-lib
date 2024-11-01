@@ -99,7 +99,7 @@ The DatePicker component has seven props:
 * `(Intl.DateTimeFormatOptions)` dateOptions : The options to be passed to the `Intl.DateTimeFormat` constructor. By default is set to `{ year: 'numeric', month: 'long', day: 'numeric' }`.
 * `(string)` localDate : The date to be formatted. By default is set to 'en-US'.
 * `(string)` labelPosition : the label position. Three possibility : left, center, right. By default is set on left.
-
+* `(number)` initialDaysOffset : The number of days to offset the initial date. By default is set to 0.
 Exemple:
 ```JS
 // For Date picker component use
@@ -111,6 +111,7 @@ const [dob, setDob] = React.useState<string>('');
   dateOptions={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
   value={dob}
   onChange={(date:string) => setDob(date)}
+  initialDaysOffset={-365} // 1 year ago
 />
 ```
 
@@ -239,3 +240,6 @@ const [inputText, setInputText] = React.useState<string>('');
 ### 1.0.4:
 * Add a `InputText` component.
 
+### 1.0.5:
+* Update `DatePicker` and `Select` components to manage the outside click.
+* Add a props `initialDaysOffset` to `DatePicker` component. Which allows to offset the initial date.

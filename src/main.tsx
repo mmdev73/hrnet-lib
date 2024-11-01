@@ -46,9 +46,9 @@ const App: React.FC = () => {
     {
       firstname: "John",
       lastname: "Doe",
-      start: 1656738649,
+      start: 1660514400000,
       department: "IT",
-      dob: -106185600,
+      dob: -548902800000,
       street: "123 Main St",
       city: "Anytown",
       state: "CA",
@@ -57,9 +57,9 @@ const App: React.FC = () => {
     {
       firstname: "Jane",
       lastname: "Doe",
-      start: 1627662224,
+      start: 1628978400000,
       department: "IT",
-      dob: 884044800,
+      dob: -517366800000,
       street: "123 Main St",
       city: "Anytown",
       state: "CA",
@@ -68,9 +68,9 @@ const App: React.FC = () => {
     {
       firstname: "Jack",
       lastname: "Doe",
-      start: 1714385180,
+      start: 1597442400000,
       department: "IT",
-      dob: 382924800,
+      dob:  -527907600000,
       street: "123 Main St",
       city: "Anytown",
       state: "CA",
@@ -114,6 +114,7 @@ const App: React.FC = () => {
         localDate='en-US'
         value={dob}
         onChange={(date:string) => setDob(date)}
+        initialDaysOffset={-365}
       />
     </div>
     <div className="components-container">

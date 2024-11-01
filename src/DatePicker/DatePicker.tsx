@@ -15,6 +15,7 @@ interface DatePickerProps {
   dateOptions?: Intl.DateTimeFormatOptions;
   localDate?: string;
   labelPosition?: 'left' | 'right' | 'center';
+  initialDaysOffset?: number;
 }
 
 
@@ -28,7 +29,8 @@ interface DatePickerProps {
  * - dateOptions (object): The options for the date format. By default, it is set to { year: 'numeric', month: 'long', day: 'numeric' }.
  * - localDate (string): The locale for the date format. By default, it is set to 'en-US'.
  * - labelPosition ('left' | 'right' | 'center'): Position of the label relative to the select component. Defaults to 'left'.
- * @returns {React.ReactElement} The rendered component.
+ * - initialDaysOffset (number): The number of days to offset the initial date. Defaults to 0.
+* @returns {React.ReactElement} The rendered component.
  */
 const DatePicker: React.FC<DatePickerProps> = ({ 
   label,
@@ -37,12 +39,17 @@ const DatePicker: React.FC<DatePickerProps> = ({
    onChange, 
    dateOptions = { year: 'numeric', month: 'long', day: 'numeric' },
    localDate = 'en-US',
-   labelPosition = 'left'
+   labelPosition = 'left',
+   initialDaysOffset = 0
   }): React.ReactElement => {
   const datePickerRef = useRef<HTMLDivElement>(null);
-  const currentDate = new Date();
+  const calculateInitialDate = () => {
+    const baseDate = new Date();
+    baseDate.setDate(baseDate.getDate() + initialDaysOffset);
+    return baseDate;
+  };
 
-  const [date, setDate] = useState<Date>(currentDate);
+  const [date, setDate] = useState<Date>(calculateInitialDate);
   const [open, setOpen] = useState<boolean>(false);
   const [day, setDay] = useState<number>(date.getUTCDate());
   const [month, setMonth] = useState<number>(date.getMonth());
@@ -108,13 +115,13 @@ const DatePicker: React.FC<DatePickerProps> = ({
      */
     const handleClickOutside = (event: MouseEvent) => {
       if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
-        setOpen(false);
+        setTimeout(() => setOpen(false), 100);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
