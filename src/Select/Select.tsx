@@ -50,6 +50,7 @@ const Select: React.FC<SelectProps> = ({
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     onChange(option);
+    console.log('option click');
     setIsOpen(false);
   };
 
@@ -58,7 +59,12 @@ const Select: React.FC<SelectProps> = ({
  * If opening the dropdown, resets the focused index.
  */
   const handleDropdownClick = () => {
-    setIsOpen(!isOpen);
+    console.log('dropdown click');
+    console.log('dropdown ref focus', dropdownRef.current === document.activeElement);
+
+    if(dropdownRef.current === document.activeElement) {
+      setIsOpen(!isOpen);
+    }
     if (!isOpen) setFocusedIndex(-1);
   };
 
@@ -80,6 +86,7 @@ const Select: React.FC<SelectProps> = ({
      */
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        console.log('click outside inside if');
         setTimeout(() => setIsOpen(false), 100);
       }
     };
@@ -108,7 +115,7 @@ const Select: React.FC<SelectProps> = ({
      * @param {KeyboardEvent} event The keydown event.
      */
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (!isOpen) return;
+      //if (!isOpen) return;
 
       switch (event.key) {
         case 'ArrowDown':
@@ -122,11 +129,14 @@ const Select: React.FC<SelectProps> = ({
           );
           break;
         case 'Enter':
-          if (focusedIndex >= 0) {
-            handleOptionClick(options[focusedIndex]);
-          }
+          if(isOpen && focusedIndex >= 0){
+              handleOptionClick(options[focusedIndex]);
+          } else if(!isOpen && dropdownRef.current === document.activeElement) {
+            setIsOpen(true);
+          }          
           break;
         case 'Escape':
+          console.log('escape')
           setIsOpen(false);
           break;
         default:
@@ -145,7 +155,8 @@ const Select: React.FC<SelectProps> = ({
    * This is used to open the dropdown when the user clicks on the select element.
    */
   const handleFocus = () => {
-    setIsOpen(true);
+    console.log('handleFocus')
+    //setIsOpen(true);
   };
 
   /**
@@ -153,6 +164,7 @@ const Select: React.FC<SelectProps> = ({
    * This is used to close the dropdown when the user clicks outside of it.
    */
   const handleBlur = () => {
+    console.log('blur');
     setIsOpen(false);
   };
 

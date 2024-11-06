@@ -253,3 +253,6 @@ const [inputText, setInputText] = React.useState<string>('');
 
 ### 1.0.8:
 * Update `DataTable` to fix bad search with date.
+
+### 1.0.9:
+* Update `Select` to fix bad event handling.
